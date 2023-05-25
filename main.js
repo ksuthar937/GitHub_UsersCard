@@ -12,6 +12,7 @@ class GitHub {
     const twitter = jsonData.twitter_username;
     const location = jsonData.location;
     const repo = jsonData.public_repos;
+    const URL = jsonData.html_url;
     this.createUserCard(
       name,
       bio,
@@ -20,7 +21,8 @@ class GitHub {
       following,
       twitter,
       location,
-      repo
+      repo,
+      URL
     );
   }
   async createUserCard(
@@ -31,7 +33,8 @@ class GitHub {
     following,
     twitter,
     location,
-    repo
+    repo,
+    URL
   ) {
     if (twitter === null) {
       twitter = "-";
@@ -45,7 +48,9 @@ class GitHub {
     mainCard.innerHTML = `<div class="card text-bg-dark mb-3" style="max-width: 500px;">
     <div class="row g-0">
       <div class="col-sm-3 g-4">
+      <a href="${URL}" target="_blank">
         <img src="${avatar}" class="rounded-circle card-img-top m-2 mx-auto img-thumbnail" alt="${name}">
+      </a>
       </div>
       <div class="col-sm-9">
         <div class="card-body">
@@ -71,15 +76,14 @@ class GitHub {
   }
 }
 
+
 const gitHubProfile = new GitHub();
 gitHubProfile.getUserDetails("ksuthar937");
 
 // let getUserID = document.getElementById("search").value;
 // console.log(document.getElementById("search"));
 // console.log(document.getElementById("search").value);
-
 // let track = document.getElementById("search");
-
 // track.addEventListener("onupdate", ())
 
 const form = document.querySelector("form");
